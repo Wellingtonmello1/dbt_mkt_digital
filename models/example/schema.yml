@@ -1,21 +1,37 @@
-
 version: 2
 
-models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+# 🔹 SOURCES (tabelas do BigQuery)
+sources:
+  - name: raw
+    description: "Dados brutos vindos do BigQuery"
+    database: faculdade-435200
+    schema: dbt_test
+    tables:
+      - name: leads
+        description: "Tabela de leads capturados nas campanhas de marketing"
+        columns:
+          - name: lead_id
+            description: "ID único do lead"
+          - name: status
+            description: "Status do lead no funil (New, Qualified, etc)"
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+# 🔹 MODELS (tabelas criadas pelo dbt)
+models:
+
+  - name: primeira_consulta
+    description: "Camada staging - dados brutos de leads"
+    columns:
+      - name: lead_id
+        description: "ID do lead"
+        tests:
+          - not_null
+          - unique
+
+      - name: status
+        description: "Status do lead"
+
+  - name: firt_analysis
+    description: "Camada analítica - leads qualificados filtrados"
+    columns:
+      - name: lead_id
+        description: "ID do lead"
