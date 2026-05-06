@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Dados brutos vindos do BigQuery"
+
+    database: faculdade-435200
+    schema: dbt_test
+
+    tables:
+      - name: customers
+        description: "Tabela de clientes"
+
+      - name: leads
+        description: "Tabela de leads"

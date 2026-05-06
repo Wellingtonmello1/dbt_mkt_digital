@@ -18,7 +18,7 @@ sources:
 # 🔹 MODELS (tabelas criadas pelo dbt)
 models:
 
-  - name: primeira_consulta
+  - name: leads_clean_base
     description: "Camada staging - dados brutos de leads"
     columns:
       - name: lead_id
